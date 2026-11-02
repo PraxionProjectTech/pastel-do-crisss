@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#111111">
+  <title>PASTEL DO CRIS</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#"><span class="brand-mark">✦</span><span id="siteName">PASTEL DO CRIS</span></a>
+    <div class="header-actions">
+      <a class="about-nav" href="#sobre">Sobre</a>
+      <button class="admin-open" id="adminOpen" aria-label="Abrir administrador">⚙ Admin</button>
+      <button class="cart-button" id="cartOpen" aria-label="Abrir sacola">🛍 <span>Sacola</span><b id="cartCount">0</b></button>
+    </div>
+  </header>
+
+  <main>
+    <section class="brand-banner" aria-label="Banner PASTEL DO CRIS">
+      <img src="banner-pastel-do-cris.png" alt="PASTEL DO CRIS — pastéis fritos na hora">
+    </section>
+    <section class="hero">
+      <div class="hero-content">
+        <span class="eyebrow">PASTELARIA ARTESANAL · DESDE O PRIMEIRO PEDAÇO</span>
+        <h1>O SABOR<br>QUE VIRA<br><em>MEMÓRIA.</em></h1>
+        <p>Uma casquinha dourada, recheio generoso e o prazer simples de comer algo preparado com cuidado.</p>
+        <a class="hero-cta" href="#cardapio">EXPLORAR CARDÁPIO <span>↗</span></a>
+      </div>
+      <div class="hero-art">
+        <div class="hero-circle"></div>
+        <img class="hero-logo" src="logo-pastel-do-cris.jpeg" alt="Logotipo PASTEL DO CRIS">
+      </div>
+      <div class="hero-bottom">SABOR DE VERDADE <span>•</span> PEÇA PELO WHATSAPP</div>
+    </section>
+
+    <section class="hours-strip" aria-live="polite">
+      <div class="hours-status"><span class="status-dot" id="storeStatusDot"></span><div><strong id="storeStatusText">Consultando funcionamento...</strong><small id="storeStatusDetail">Horários da loja</small></div></div>
+      <div class="hours-public"><span class="hours-icon">◷</span><div><strong>HORÁRIO DE FUNCIONAMENTO</strong><small id="publicHoursText">Consulte nossos horários</small></div></div>
+    </section>
+
+    <section class="about-section" id="sobre">
+      <div class="about-copy">
+        <span class="eyebrow">CONHEÇA A CASA</span>
+        <h2>Sobre o <em>Pastel do Cris.</em></h2>
+        <p>Um espaço dedicado a pastéis preparados na hora. Conheça um pouco do nosso estabelecimento e faça seu pedido diretamente pelo WhatsApp.</p>
+        <div class="about-actions">
+          <a class="about-whatsapp" href="https://wa.me/5527996173200" target="_blank" rel="noopener noreferrer">
+            <span aria-hidden="true">◉</span> FALAR PELO WHATSAPP
+          </a>
+          <a class="about-location" href="https://maps.app.goo.gl/tfBXAHoZzytbZWit5?g_st=ic" target="_blank" rel="noopener noreferrer">
+            <span aria-hidden="true">⌖</span> VER LOCALIZAÇÃO
+          </a>
+        </div>
+      </div>
+      <div class="about-photo-wrap">
+        <img src="sobre-pastel-do-cris.jpeg" alt="Pastel do Cris, equipe, pastéis e caldo de cana">
+      </div>
+    </section>
+
+    <section class="menu-section" id="cardapio">
+      <div class="section-heading">
+        <div><span class="eyebrow">SELEÇÃO DA CASA</span><h2>O nosso <em>cardápio.</em></h2></div>
+        <p>Preparados com capricho. Escolhidos por você.</p>
+      </div>
+      <div class="products-grid" id="productsGrid"></div>
+    </section>
+    <section class="bottom-banner"><span>✦</span><div><strong>UM BOM MOMENTO COMEÇA À MESA.</strong><small>Escolha seu favorito e faça seu pedido.</small></div><a href="#cardapio">FAZER PEDIDO ↗</a></section>
+  </main>
+
+  <footer><span id="footerName">PASTEL DO CRIS</span><span>Feito para matar sua fome. © <span id="year"></span></span></footer>
+
+  <div class="overlay" id="cartOverlay"></div>
+  <aside class="drawer" id="cartDrawer" aria-label="Sacola de compras">
+    <div class="drawer-head"><div><span class="eyebrow">SEU PEDIDO</span><h3>Sua sacola</h3></div><button class="close-btn" id="cartClose">✕</button></div>
+    <div id="cartItems" class="cart-items"><p class="empty-cart">Sua sacola está vazia.</p></div>
+    <div class="cart-total"><span>Total</span><strong id="cartTotal">R$ 0,00</strong></div>
+    <button class="checkout-btn" id="checkoutOpen">FINALIZAR COMPRA <span>→</span></button>
+    <p class="secure-note">Você informará seus dados antes de enviar o pedido.</p>
+  </aside>
+
+  <div class="modal-backdrop" id="checkoutModal">
+    <div class="modal">
+      <button class="close-btn modal-x" data-close="checkoutModal">✕</button>
+      <span class="eyebrow">SÓ MAIS UM PASSO</span><h3>Onde entregamos?</h3>
+      <p>Preencha seus dados para enviar o pedido pelo WhatsApp.</p>
+      <form id="checkoutForm">
+        <label for="customerName">Seu nome</label><input id="customerName" required maxlength="80" placeholder="Como podemos te chamar?">
+        <label for="customerAddress">Endereço completo</label><textarea id="customerAddress" required maxlength="300" rows="3" placeholder="Rua, número, bairro e complemento"></textarea>
+        <button class="checkout-btn" type="submit">ENVIAR PEDIDO PELO WHATSAPP →</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="modal-backdrop" id="adminModal">
+    <div class="modal admin-modal">
+      <button class="close-btn modal-x" data-close="adminModal">✕</button>
+      <div id="adminLoginView">
+        <span class="eyebrow">ÁREA RESTRITA</span><h3>Painel administrativo</h3>
+        <p>Entre para gerenciar sua loja.</p>
+        <form id="loginForm">
+          <label for="adminUser">Usuário</label><input id="adminUser" autocomplete="username" required placeholder="Usuário">
+          <label for="adminPass">Senha</label><input id="adminPass" type="password" autocomplete="current-password" required placeholder="Senha">
+          <p class="login-error" id="loginError"></p>
+          <button class="checkout-btn" type="submit">ENTRAR NO ADMIN →</button>
+        </form>
+      </div>
+      <div id="adminPanel" hidden>
+        <span class="eyebrow">GERENCIAMENTO DA LOJA</span><h3>Configurações</h3>
+        <div class="admin-scroll">
+          <label for="editSiteName">Nome da loja</label><input id="editSiteName" maxlength="40">
+          <div class="color-row"><div><label for="editPrimary">Cor principal</label><input id="editPrimary" type="color"></div><div><label for="editBackground">Cor de fundo</label><input id="editBackground" type="color"></div></div>
+          <h4>Funcionamento do estabelecimento</h4>
+          <p class="admin-section-help">Defina os dias e horários em que a loja estará aberta. O status será exibido para os clientes.</p>
+          <div id="adminSchedule" class="admin-schedule"></div>
+          <h4>Produtos cadastrados</h4>
+          <div id="adminProducts"></div>
+          <h4>Adicionar novo produto</h4>
+          <form id="newProductForm" class="new-product-form">
+            <label for="newProductName">Nome do produto</label>
+            <input id="newProductName" maxlength="60" required placeholder="Ex.: Pastel de queijo">
+            <label for="newProductPrice">Preço (R$)</label>
+            <input id="newProductPrice" type="number" min="1" max="999" step="0.50" required placeholder="Ex.: 15,00">
+            <label for="newProductPhoto">Foto do produto</label>
+            <input id="newProductPhoto" type="file" accept="image/*" required>
+            <img id="newProductPreview" class="upload-preview" alt="Prévia da foto selecionada" hidden>
+            <button class="add-product-btn" type="submit">＋ ADICIONAR PRODUTO</button>
+          </form>
+          <button class="checkout-btn" id="saveSettings" type="button">SALVAR ALTERAÇÕES</button>
+          <button class="logout-btn" id="adminLogout" type="button">SAIR DO ADMIN</button>
+          <p class="admin-warning">As alterações ficam salvas neste navegador. Para compartilhar alterações com todos os clientes, é necessário conectar o site a um banco de dados e a um painel protegido no servidor.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>
